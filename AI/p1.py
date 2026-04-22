@@ -22,10 +22,10 @@ def bfs(v,g,n):
         s=q.pop(0)
         print(s,end="")
 
-        for n in g[s]:
-            if n not in v:
-                v.append(n)
-                q.append(n)
+        for nib in g[s]:
+            if nib not in v:
+                v.append(nib)
+                q.append(nib)
 
 
 bfs(v,g,'A')
