@@ -1,8 +1,7 @@
-s = [
-    1,2,3,
-    4,8,6,
-    7,5,0
-]
+s = [1, 2, 3,
+         4, 0, 6,
+         7, 5, 8]
+
 g = [
     1,2,3,
     4,5,6,
@@ -10,7 +9,7 @@ g = [
 ]
 
 moves = {
-     0:[1,2],
+     0:[1,3],
      1:[0,2,4],
      2:[1,5],
      3:[0,4,6],
@@ -22,64 +21,49 @@ moves = {
 }
 
 def sol(s):
-     v = []
-     q = []
+    v = []
+    q =[]
 
-     v.append(s)
-     q.append((s,[]))
-     while q:
-        current, path = q.pop(0)
+    v.append(s)
+    q.append((s,[]))
 
-        if (current == g):
-           return path  + [current]
-        zero_index = current.index(0)
+    while q:
+        current , path = q.pop(0)
 
-        for  move in moves[zero_index]:
-           new_state = current.copy()
+        if current == g:
+            return path + [current]
+        
+        z_i = current.index(0)
 
-           new_state[zero_index],new_state[move] = new_state[move],new_state[zero_index]
-           
-           if new_state not in v:
-               v.append(new_state)
-               q.append((new_state,path+[current]))
+        for move in moves[z_i]:
+            n_s = current.copy()
 
-     return None  
+            n_s[z_i],n_s[move] = n_s[move],n_s[z_i]
 
-def print_puzzle(state):
-    # state is a list like [1,2,3,4,5,6,7,8,0]
+            if n_s not in v:
+                v.append(n_s)
+                q.append((n_s,path + [current]))
 
-    for i in range(0, 9, 3):
-        # range(0, 9, 3) gives: 0, 3, 6
-
-        # state[i:i+3] means:
-        # s from index i
-        # go up to (but not including) i+3
-
-        # Example:
-        # i = 0 → state[0:3] → [1, 2, 3]
-        # i = 3 → state[3:6] → [4, 5, 6]
-        # i = 6 → state[6:9] → [7, 8, 0]
-
-        print(state[i:i+3])  # prints one row (3 elements)
-
-    print()  # empty line for spacing
+    return None
 
 
-# -------------------------------
-# Main Execution
-# -------------------------------
+def p_puzzle(s):
 
-solution = sol(s)
+    for i in range(0,9,3):
+        print(s[i:i+3])
 
-if solution:
-    print("Solution Found!\n")
+    print()
 
-    for step in solution:
-        print_puzzle(step)
+sol = sol(s)
 
-    print("Total Moves:", len(solution) - 1)
+if sol:
+    print("Solution Found \n")
+
+    for step in sol:
+        p_puzzle(step)
+
+    print("Total Moves :",len(sol)-1)
 
 else:
-    print("No Solution")
+    print("No solution")
 
-       

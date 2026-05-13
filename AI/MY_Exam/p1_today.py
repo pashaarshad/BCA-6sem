@@ -1,14 +1,11 @@
-g={
+g = {
         'A':['B','C'],
         'B':['D','E'],
-        'C':['F'],
+        'C':[],
         'D':[],
         'E':['F'],
         'F':[]
-
-
     }
-
 v = []
 q = []
 
@@ -17,7 +14,7 @@ def bfs(v,g,n):
     q.append(n)
 
     while q:
-        s=q.pop(0)
+        s = q.pop(0)
         print(s,end="")
 
         for nib in g[s]:
@@ -25,5 +22,6 @@ def bfs(v,g,n):
                 v.append(nib)
                 q.append(nib)
 
-
 bfs(v,g,'A')
+                
+                

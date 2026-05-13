@@ -1,5 +1,3 @@
-#Write a Program to Implement Depth First Search using Python
-
 g={
     'A':['B','C'],
     'B':['D','E'],
